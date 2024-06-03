@@ -30,16 +30,17 @@ export default () => {
   let row;
   let col;
 
+  console.log(parseField(curr));
+
   while (!_.isEmpty(vacant)) {
-    console.log(parseField(curr));
     [row, col] = question(`${turn} turn: `, { limit: vacant, limitMessage: 'invalid input' })
       .split('')
       .map(Number);
     _.pull(vacant, `${row}${col}`);
     curr[row - 1][col - 1] = turn;
+    console.log(parseField(curr));
     if (hasWinner(curr)) {
-      console.log(parseField(curr));
-      console.log(`${turn} is won!`);
+      console.log(`${turn} won!`);
       return;
     }
     turn = switchTurn[turn];
